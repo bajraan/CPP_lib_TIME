@@ -4,6 +4,11 @@
  *
  * The function is expected to return a STRING.
  * The function accepts STRING s as parameter.
+ *
+ * Exapmles: 
+ * 12:01:00PM -> 12:01:00
+ * 12:01:00AM -> 00:01:00
+ * 07:05:45PM -> 19:05:45
  */
 
 string timeConversion(string s) {
