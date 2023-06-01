@@ -46,35 +46,23 @@ std::string timeConversion(std::string s) {
     ss = stoi(s.substr(6,2));
     stat = s.substr(8,2);
  
-    if( stat == "AM" ){
+    if( stat == "AM" )
+    {
         if( hh==12) hh=0;
+
         output
-        << std::setw(2) 
-        << std::setfill('0')   
-        << hh 
-        << ":" 
-        << std::setw(2) 
-        << std::setfill('0')
-        << mm
-        << ":"
-        << std::setw(2) 
-        << std::setfill('0')
-        << ss;      
+        << std::setw(2) << std::setfill('0') << hh << ":" 
+        << std::setw(2) << std::setfill('0') << mm << ":"
+        << std::setw(2) << std::setfill('0') << ss;      
     }
-    else{
+    else
+    {
         if( hh!=12) hh+=12;
+
         output
-        << std::setw(2) 
-        << std::setfill('0')   
-        << hh 
-        << ":" 
-        << std::setw(2) 
-        << std::setfill('0')
-        << mm
-        << ":"
-        << std::setw(2) 
-        << std::setfill('0')
-        << ss;
+        << std::setw(2) << std::setfill('0') << hh << ":" 
+        << std::setw(2) << std::setfill('0') << mm << ":"
+        << std::setw(2) << std::setfill('0') << ss;
     }
     
     return output.str();
