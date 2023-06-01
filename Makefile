@@ -1,11 +1,15 @@
 CC = g++
 CFLAGS = -std=c++11 -Wall
-TARGET = test_runner
+TARGET = out
+TEST_TARGET = test_runner
 
-SRCS = test.cpp pbaTime/pbaTime.cpp tests/pbaTimeTests.cpp
+SRCS = main.cpp pbaTime/pbaTime.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-all: $(TARGET)
+TEST_SRCS = test.cpp pbaTime/pbaTime.cpp tests/pbaTimeTests.cpp
+TEST_OBJS = $(TEST_SRCS:.cpp=.o)
+
+all: $(TARGET) $(TEST_TARGET)
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
@@ -15,3 +19,6 @@ $(TARGET): $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
+
+$(TEST_TARGET): $(TEST_OBJS)
+	$(CC) $(CFLAGS) $(TEST_OBJS) -o $(TEST_TARGET)
