@@ -1,7 +1,10 @@
+#include <string>
+
 #include "tests/pbaTimeTests.hpp"
 
-int main() {
-    TEST1();
-    // Wywoˆaj inne funkcje testuj¥ce
+int main(int argc, char* argv[]) {
+
+    bool debFlag = checkDebFlag(argc,&argv[0]);
+    TEST__timeConversion(debFlag);
     return 0;
 }
