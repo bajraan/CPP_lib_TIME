@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstring>
 
 #include "pbaTimeTests.hpp"
 #include "../pbaTime/pbatime.hpp"
@@ -13,10 +14,12 @@ void assertTrue(const T& actual, const T& expected) {
     }
 }
 
-bool checkDebFlag(int argc, char* argv[])
-{                
+bool checkDebFlag(int argc, char* argv)
+{
+
     for (int i = 1; i < argc; i++) {
-        if (std::string(argv[i]) == "-deb") {
+        
+        if (strcmp(argv , "-deb") == 0) {
             return true;
         }
     }
