@@ -5,12 +5,19 @@
 #include "pbaTimeTests.hpp"
 #include "../pbaTime/pbatime.hpp"
 
+#include <windows.h>
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+#define TEST_PASS   SetConsoleTextAttribute(hConsole,10);std::cout<<"PASS";SetConsoleTextAttribute(hConsole,7);
+#define TEST_FAIL   SetConsoleTextAttribute(hConsole,12);std::cout<<"FAIL";SetConsoleTextAttribute(hConsole,7);
+#define TEST_UNKN   SetConsoleTextAttribute(hConsole,14);std::cout<<"UNKNOWN";SetConsoleTextAttribute(hConsole,7);
+
+
 template <typename T>
-void assertTrue(const T& actual, const T& expected) {
+TRes assertTrue(const T& actual, const T& expected) {
     if (actual == expected) {
-        std::cout << "Test Passed: Actual value matches the expected value." << std::endl;
+        return TRes::pass;
     } else {
-        std::cout << "Test Failed: Actual value [" << actual << "] does not match the expected value [" << expected << "]." << std::endl;
+        return TRes::fail;
     }
 }
 
@@ -27,11 +34,28 @@ bool checkDebFlag(int argc, char* argv[])
     return false;
 }
 
+void printResult(TRes TestResult, std::string inp, std::string out, std::string exp, bool debFlag)
+{   
+    switch(TestResult)
+    {
+        case TRes::pass:    TEST_PASS break;
+        case TRes::fail:    TEST_FAIL break;
+        default:            TEST_UNKN break;
+    }
+    if(debFlag)
+        std::cout << " " << inp << " -> " 
+                         << out << " -> " 
+                         << exp;
+    std::cout << std::endl;
+}
+
+
+
 void TEST__timeConversion(bool debFlag)
 {
-    std::cout << "========================" << std::endl;
+    std::cout << "----------------------------" << std::endl;
     std::cout << "TEST: timeConversion    " << std::endl;
-    std::cout << "========================" << std::endl;
+    std::cout << "----------------------------" << std::endl;
 
     const int t_cnt = 3;
 
@@ -53,12 +77,13 @@ void TEST__timeConversion(bool debFlag)
 };
     for(int i=0; i<t_cnt; i++)
     {
+        TRes TestResult = TRes::unknown;
         std::string out = timeConversion(TestTab[i].input);
         std::string exp = TestTab[i].exp_output;
 
-        if(debFlag)
-        std::cout << TestTab[i].input << " -> " << out << " -> " << exp << std::endl;
+        TestResult = assertTrue(out,exp);
 
-        assertTrue(out,exp); 
+        printResult(TestResult,TestTab[i].input, out,exp,debFlag);
+
     }
 }
