@@ -5,13 +5,10 @@
   </a>
 
 <h3 align="center">CPP TIME LIBRARY  </h3>
-
-<div align="center">
-    <img src="70_Documentation/00_ReadmeFiles/cmd.gif" alt="Logo" width="1000" height="1000">
-  </a>
-
 </div>
 
+![Logo](70_Documentation/00_ReadmeFiles/cmd.gif)
+![Logo](70_Documentation/00_ReadmeFiles/cpp.png)
 <!-- TABLE OF CONTENTS -->
 ## Project Info
 ## Project Structure
