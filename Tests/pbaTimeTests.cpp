@@ -14,12 +14,13 @@ void assertTrue(const T& actual, const T& expected) {
     }
 }
 
-bool checkDebFlag(int argc, char* argv)
+bool checkDebFlag(int argc, char* argv[])
 {
 
+    char* tmp = argv[1];
     for (int i = 1; i < argc; i++) {
         
-        if (strcmp(argv , "-deb") == 0) {
+        if (strcmp(tmp , "-deb") == 0) {
             return true;
         }
     }
